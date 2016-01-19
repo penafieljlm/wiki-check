@@ -1,2 +1,2 @@
-# wiki-check
-Repository Wiki Checker
+# wikicheck
+GitHub Repository Wiki Checker
