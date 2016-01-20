@@ -16,7 +16,7 @@ git clone https://github.com/<username>/<repository>.wiki.git
 
 After that, download `wikicheck.py`, open a terminal, navigate to your cloned wiki repository, and invoke this tool, like so:
 ```
-cd <repository>.wiki.git
+cd <repository>.wiki
 python <path-to-wikicheck>/wikicheck.py
 ```
 
