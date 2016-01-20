@@ -9,7 +9,7 @@ This is a simple GitHub Markdown Wiki Consistency Checker. This tool checks for 
 ## Usage
 [[Back to Top](wikicheck)]
 
-In order to use this tool on your GitHub Wiki, you first need to clone get your wiki cloned onto your machine, like so:
+In order to use this tool on your GitHub Wiki, you first need to get your wiki cloned onto your machine, like so:
 ```
 git clone https://github.com/<username>/<repository>.wiki.git
 ```
