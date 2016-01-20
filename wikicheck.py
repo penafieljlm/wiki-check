@@ -6,7 +6,7 @@ import re
 import sys
 import urlparse
 
-REGEX_SECTION = re.compile("^#+(.+)$", flags=re.MULTILINE)
+REGEX_SECTION = re.compile("^#+(.+?)#*$", flags=re.MULTILINE)
 REGEX_BOOKMARK = re.compile("\[([^\[\]]+?)\]\(#([^\(\)]+?)\)", flags=re.MULTILINE)
 REGEX_WIKILINK = re.compile("\[\[([^\[\|\]]+?)\|([^\[\|\]]+?)\]\]", flags=re.MULTILINE)
 
@@ -21,7 +21,7 @@ def section_name_to_id(name):
         Returns
            The section name converted into a section ID. 
     """
-    return name.strip().lower().replace(' ', '-').replace('/', '-').replace('+', '-').replace('<', '-').replace('>', '-').replace('.', '')
+    return name.strip().lower().replace(' ', '-').replace('/', '').replace('+', '-').replace('<', '-').replace('>', '-').replace('.', '')
 
 def enum_files(path):
     """
@@ -161,6 +161,7 @@ if __name__ == '__main__':
         for row in bookmarks:
             for section in bookmarks[row]:
                 if section not in sections:
+                    # TODO: flag sections with capital letters
                     print
                     print "  MEDIUM: Missing Bookmark Reference                                           "
                     print
@@ -187,6 +188,7 @@ if __name__ == '__main__':
                         a = '.'.join(n.split('/')[-1].split('.')[:-1])
                         if a == article:
                             found = True
+                            # TODO: flag sections with capital letters
                             if section is not None and section not in articles[n]['sections']:
                                 print
                                 print "  MEDIUM: Missing WikiLink Reference                                           "
@@ -204,6 +206,7 @@ if __name__ == '__main__':
                                 print "      The section being referred to by a bookmark reference does not exist.    "
                                 print
                     if not found:
+                        # TODO: flag sections with capital letters
                         print
                         print "  MEDIUM: Missing WikiLink Reference                                           "
                         print
