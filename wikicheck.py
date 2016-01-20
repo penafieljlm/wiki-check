@@ -4,6 +4,7 @@ import os
 import os.path
 import re
 import sys
+import urlparse
 
 REGEX_SECTION = re.compile("^#+(.+)$", flags=re.MULTILINE)
 REGEX_BOOKMARK = re.compile("\[([^\[\]]+?)\]\(#([^\(\)]+?)\)", flags=re.MULTILINE)
@@ -20,7 +21,7 @@ def section_name_to_id(name):
         Returns
            The section name converted into a section ID. 
     """
-    return name.strip().lower().replace(' ', '-').replace('/', '-').replace('+', '-').replace('<', '-').replace('>', '-')
+    return name.strip().lower().replace(' ', '-').replace('/', '-').replace('+', '-').replace('<', '-').replace('>', '-').replace('.', '')
 
 def enum_files(path):
     """
@@ -122,6 +123,9 @@ if __name__ == '__main__':
                 # extract links
                 match = REGEX_WIKILINK.findall(line)
                 for label, link in match:
+                    url = urlparse.urlparse(link)
+                    if url.scheme is not None:
+                        continue
                     if row not in links:
                         links[row] = {}
                     split = link.split('#', 1) 
