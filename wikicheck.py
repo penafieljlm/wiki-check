@@ -164,7 +164,7 @@ if __name__ == '__main__':
                     print "      " + name
                     print
                     print "    Line                                                                       "
-                    print "      " + str(row)
+                    print "      " + str(row + 1)
                     print
                     print "    Target                                                                     "
                     print "      " + section
@@ -191,7 +191,7 @@ if __name__ == '__main__':
                                 print "      " + name
                                 print
                                 print "    Line                                                                       "
-                                print "      " + str(row)
+                                print "      " + str(row + 1)
                                 print
                                 print "    Target                                                                     "
                                 print "      " + article + '#' + section
@@ -207,7 +207,7 @@ if __name__ == '__main__':
                         print "      " + name
                         print
                         print "    Line                                                                       "
-                        print "      " + str(row)
+                        print "      " + str(row + 1)
                         print
                         print "    Target                                                                     "
                         print "      " + article + ('#' + section) if section is not None else ""
