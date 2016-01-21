@@ -72,12 +72,10 @@ if __name__ == '__main__':
 
         if not unique:
             print
-            print "  HIGH: Non-unique Article Names                                               "
-            print
+            print "  WARNING: Non-unique Article Names                                            "
             print "    Files                                                                      "
             print "      " + name
             print "      " + n
-            print
             print "    Description                                                                "
             print "      All article names in a GitHub Wiki must be unique even if they are in    "
             print "      different directories. The script will be unable to perform further      "
@@ -158,24 +156,21 @@ if __name__ == '__main__':
         # perform bookmark reference checks
         sections = articles[name]['sections']
         bookmarks = articles[name]['bookmarks']
+        article = '.'.join(name.split('/')[-1].split('.')[:-1])
         for row in bookmarks:
             for section in bookmarks[row]:
                 if section not in sections:
                     # TODO: flag sections with capital letters
                     print
-                    print "  MEDIUM: Missing Bookmark Reference                                           "
-                    print
+                    print "  WARNING: Missing Section Reference                                           "
                     print "    File                                                                       "
                     print "      " + name
-                    print
                     print "    Line                                                                       "
                     print "      " + str(row + 1)
-                    print
                     print "    Target                                                                     "
-                    print "      " + section
-                    print
+                    print "      " + article + '#' + section
                     print "    Description                                                                "
-                    print "      The section being referred to by a bookmark reference does not exist.    "
+                    print "      The section being referred to by a link does not exist.                  "
                     print
         
         # perform wikilink reference checks
@@ -191,34 +186,26 @@ if __name__ == '__main__':
                             # TODO: flag sections with capital letters
                             if section is not None and section not in articles[n]['sections']:
                                 print
-                                print "  MEDIUM: Missing WikiLink Reference                                           "
-                                print
+                                print "  WARNING: Missing Section Reference                                           "
                                 print "    File                                                                       "
                                 print "      " + name
-                                print
                                 print "    Line                                                                       "
                                 print "      " + str(row + 1)
-                                print
                                 print "    Target                                                                     "
                                 print "      " + article + '#' + section
-                                print
                                 print "    Description                                                                "
-                                print "      The section being referred to by a bookmark reference does not exist.    "
+                                print "      The section being referred to by a link does not exist.                  "
                                 print
                     if not found:
                         # TODO: flag sections with capital letters
                         print
-                        print "  MEDIUM: Missing WikiLink Reference                                           "
-                        print
+                        print "  WARNING: Missing Article Reference                                           "
                         print "    File                                                                       "
                         print "      " + name
-                        print
                         print "    Line                                                                       "
                         print "      " + str(row + 1)
-                        print
                         print "    Target                                                                     "
                         print "      " + article + ('#' + section) if section is not None else ""
-                        print
                         print "    Description                                                                "
-                        print "      The section being referred to by a bookmark reference does not exist.    "
+                        print "      The article being referred to by a link does not exist.                  "
                         print
